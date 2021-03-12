@@ -14,3 +14,25 @@ array.firstIndex(where: {$0 == "person1"})
 //Find lowest number in array
 let list = [5, 4, 3, 5, 2, 50, 8, 10, 300]
 let minValue = list.min()
+
+
+//Find missing elements in array
+{
+        let arrInt = [4,5,1,6,9]
+        let sortedArr = arrInt.sorted()
+        var arrFinal = [Int]()
+        var n = 1
+        for _ in(0..<10)
+        {
+            if arrInt.contains(n)
+            {
+                n += 1
+            }
+            else
+            {
+                arrFinal.append(n)
+                n += 1
+            } 
+        }
+        
+    }
