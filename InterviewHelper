@@ -113,7 +113,6 @@ func secondLargest()
         var arr = [7,6456,2135,164,1345,4,8,5,87456,123,2,87,724,6523,1]
         var arrSorted = arr
         var index = arr.count
-        var swaper = 0
         repeat {
           var previousSwapIndex = 0
           
@@ -125,7 +124,6 @@ func secondLargest()
                 arrSorted[i] = x
                 arrSorted[i - 1] = y
               previousSwapIndex = i
-              swaper += 1
             }
           }
 
