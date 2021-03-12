@@ -107,5 +107,27 @@ func secondLargest()
          
         }
         
+      /////////////////////////////////////////////////////////////////////////  Array sorting without .sort()       
+        
+        
+        var arr = [7,6456,2135,164,1345,4,8,5,87456,123,2,87,724,6523,1]
+        var arrSorted = NSMutableArray(array: arr)
+        var index = arr.count
+        var swaper = 0
+        repeat {
+          var previousSwapIndex = 0
+          
+          for i in 1..<index {
+            if (arrSorted[i - 1] as! Int) > (arrSorted[i] as! Int) {
+              arrSorted.exchangeObject(at: i, withObjectAt: i-1)
+              previousSwapIndex = i
+              swaper += 1
+            }
+          }
+
+          index = previousSwapIndex
+          
+        } while (index != 0)
+        print(arrSorted as Array)
     
     
