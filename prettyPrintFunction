@@ -1,0 +1,4 @@
+func prettyPrinter(object : Array)
+{
+print(String(data: try! JSONSerialization.data(withJSONObject: object , options: .prettyPrinted), encoding: .utf8 )!)
+}
