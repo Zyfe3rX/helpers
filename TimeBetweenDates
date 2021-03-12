@@ -1,0 +1,10 @@
+            let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let fromDate = dateFormatter.date(from: fromDateString)
+            let toDate = dateFormatter.date(from: toDateString)
+            let cal = Calendar.current
+            let componentsMin = cal.dateComponents([.minute], from: departureDate!, to: arrivalDate!)
+            let minsBetween = componentsMin.minute!
+            let hours = minsBetween / 60
+            let mins = minsBetween % 60
+            print(""\(hours)H : \(mins)Mins")
