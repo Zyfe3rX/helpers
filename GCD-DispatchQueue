@@ -1,0 +1,39 @@
+//Creating a concurrent queue
+
+let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
+concurrentQueue.sync {
+
+}  
+
+
+Create a serial queue
+
+let serialQueue = DispatchQueue(label: "queuename")
+serialQueue.sync { 
+
+}
+
+//Get main queue asynchronously
+
+DispatchQueue.main.async {
+
+}
+//Get main queue synchronously
+
+DispatchQueue.main.sync {
+}
+//To get one of the background thread
+
+DispatchQueue.global(qos: .background).async {
+
+}
+
+//To get one of the background thread
+
+DispatchQueue.global(qos: .default).async {
+
+}
+
+DispatchQueue.global().async {
+    // qos' default value is ´DispatchQoS.QoSClass.default`
+}
