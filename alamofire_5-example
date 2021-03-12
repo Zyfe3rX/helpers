@@ -1,0 +1,113 @@
+
+import Foundation
+import AJMessage
+import SwiftyJSON
+import Alamofire
+
+
+struct APIDetails
+{
+    
+    static var header : HTTPHeaders = ["authkey" : UserDetails.authkey]
+}
+
+// MARK: - API CALL LOGIN
+func loginAPI()
+   {
+
+
+    let param : [String: Any] = [
+        "agent" : UserDetails.username,
+        "pwd" : UserDetails.password,
+
+    ]
+
+    
+    let urlString = APIDetails.baseURL + "/onboard/GetAgent"
+    AF.request(
+     urlString,
+     method: .post,
+     parameters: param,
+     encoding: JSONEncoding.default,
+     headers: APIDetails.Header
+    )
+    .responseString{
+        response in
+        switch response.result {
+        case let .success(value):
+            let jsonData = value.data(using: .utf8)!
+            let json = try? JSON(data: jsonData)
+            if json?["responseMessage"].string != "Success"
+            {
+                errorNotification(title: "Login Failed", message: "Please try login in again")
+            }
+            else if json?["responseMessage"].string == "Agent not found!"
+            {
+                errorNotification(title: "No user found", message: "Please contact the administrator if you think this is an error")
+            }
+            
+            do {
+                let APIData = try JSONDecoder().decode(LoginAPIData.Root.self, from: jsonData)
+                 LoginAPIData.decodedData = APIData
+                
+                if LoginAPIData.decodedData?.onboarding?.count ?? 0 > 0
+                {
+                    UserDetails.name = LoginAPIData.decodedData?.onboarding?[0].agency?.name ?? ""
+                    UserDetails.id = LoginAPIData.decodedData?.onboarding?[0].agency?.id ?? 0
+                    UserDetails.phoneNumber = LoginAPIData.decodedData?.onboarding?[0].agency?.phone ?? ""
+                    UserDetails.mco = LoginAPIData.decodedData?.onboarding?[0].mco ?? ""
+                    
+                    UserDefaults.standard.set(UserDetails.name, forKey: "KamAirName")
+                    UserDefaults.standard.set(UserDetails.id, forKey: "KamAirId")
+                    UserDefaults.standard.set(UserDetails.phoneNumber, forKey: "KamAirPhone")
+                    UserDefaults.standard.set(UserDetails.mco, forKey: "KamAirMco")
+                    UserDefaults.standard.set(UserDetails.username, forKey: "KamAirUserName")
+                    UserDefaults.standard.set(UserDetails.password, forKey: "KamAirPassword")
+                    
+                    NotificationCenter.default.post(
+                        name: Notification.Name("LoginSuccess"),
+                        object: nil)
+                }
+                else
+                {
+                    errorNotification(title: "Error", message: "Unknown error, please try again later")
+                }
+                
+                
+                
+               } catch let jsonErr {
+                print("Error: ", jsonErr)
+            }
+
+            case let .failure(error):print(error);
+            break
+        }
+
+    }
+    
+}
+
+struct LoginAPIData{
+    
+    struct Root: Codable {
+        let responseCode: Int?
+        struct Onboarding: Codable {
+            struct Agency: Codable {
+                let phone: String?
+                let id: Int?
+                let name: String?
+                let email: String?
+            }
+            let agency: Agency?
+            let mco: String
+            let agent: String
+            let id: Int
+        }
+        let onboarding: [Onboarding]?
+    }
+
+    static var decodedData: LoginAPIData.Root?
+}
+
+
+
