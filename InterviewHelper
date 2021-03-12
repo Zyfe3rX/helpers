@@ -1,0 +1,111 @@
+/////////////////////////////////////////////////////////////////////////  Find 2nd largest element in array
+func secondLargest()
+    {
+        let arr = [1,6456,2135,164,1345,4,8,5,87456,123,2,87,724,6523]
+        var largest = arr[0]
+        var large2nd = 0
+        var smallest = arr[0]
+        for i in(0..<arr.count)
+        {
+            let newVal = arr[i]
+            if newVal > large2nd && newVal < largest
+            {
+                large2nd = newVal
+            }
+            if newVal > largest
+            {
+                largest = newVal
+            }
+            if newVal < smallest
+            {
+            smallest = newVale
+            }
+        }
+        print(largest)
+        print(large2nd)
+        
+        OR
+        
+        let sortedArr = arr.sorted()
+        let sortArrCount = sortedArr.count
+        let largest2nd = sortedArr[sortArrCount-2]
+        print(largest2nd)
+    }
+    
+  /////////////////////////////////////////////////////////////////////////  Find all numbers between WITHOUT and WITH USING CONTAIN()
+        func numbersbetween()
+    {
+        var arr = [9,16,1,5,7,3]
+        arr.sort()
+        var n = 0
+        var finalArr = [Int]()
+        let maxVal = arr.max() ?? 0
+        for var i in(0..<maxVal)
+        {
+            if arr.contains(n)
+            {
+                n += 1
+            }
+            else
+            {
+            //    finalArr.append(n)
+                n += 1
+            }
+        }
+        print(finalArr)
+        var checker = false
+        n = 0
+        for  i in(0..<maxVal)
+        {
+            for k in (0..<arr.count)
+            {
+                let x = arr[k]
+                
+                if n == x
+                {
+                    checker = true
+                    break
+                }
+                else
+                {
+                    checker = false
+                }
+            }
+            if checker == false
+            {
+                finalArr.append(n)
+            }
+            n += 1
+        }
+        print(finalArr)
+    }
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////  Tuple Sorting
+    
+        var personx = ( n : "2" ,l : "2")
+        var person1 = (n : "1" ,l : "1")
+        var parray = [personx,person1]
+        print(parray)
+        
+        parray.sort { (parray1 : (n : String, l : String), parray2 : (n : String, l : String)) -> Bool in
+            return parray1  < parray2
+        }
+        print(parray)
+    
+      /////////////////////////////////////////////////////////////////////////  String Reversal
+    
+        let myString = "My Name is something something"
+        let myString2 = String (myString.reversed())
+        OR
+        var myString3 = ""
+        for i in(0..<myString4.count)
+        {
+        let x = myString[myString4.index(myString.startIndex, offsetBy: i)]
+            myString5.append(x)
+         
+        }
+        
+    
+    
