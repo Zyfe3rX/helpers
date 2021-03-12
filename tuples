@@ -1,0 +1,9 @@
+//TUPLE SORTING        
+        var personx = ( n : "2" ,l : "2")
+        var person1 = (n : "1" ,l : "1")
+        var parray = [personx,person1]
+        print(parray)
+        
+        parray.sort { (parray1 : (n : String, l : String), parray2 : (n : String, l : String)) -> Bool in
+            return parray1  < parray2
+        }
