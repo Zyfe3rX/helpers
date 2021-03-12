@@ -1,0 +1,14 @@
+//check if index exists
+let isIndexValid = array.indices.contains(index) 
+
+// Finds indexes of all occurances of said element - 0 & 4
+let array = ["A", "Z", "C","A"]
+let indexes = array.enumerate().filter {
+    $0.element.containsString("A")
+    }.map{$0.index}
+print(indexes) 
+
+//Finds first index where the item is
+array.firstIndex(where: {$0 == "person1"})
+
+
