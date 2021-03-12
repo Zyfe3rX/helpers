@@ -1,0 +1,17 @@
+func toDictionary(_ encoder: JSONEncoder = JSONEncoder()) throws -> [String: Any] {
+            let flightJsonCodable =  FlightInfo.decodedData?.availabilityResultList?[0].availabilityRouteList?[0].availabilityByDateList?[0].originDestinationOptionList?[indexPath]
+            let data = try! encoder.encode(flightJsonCodable)
+            let object = try! JSONSerialization.jsonObject(with: data)
+            guard let json = object as? [String: Any] else {
+                let context = DecodingError.Context(codingPath: [], debugDescription: "Deserialized object is not a dictionary")
+                throw DecodingError.typeMismatch(type(of: object), context)
+            }
+            return json
+        }
+        
+        let y = try! toDictionary()
+        let jsonData = try! JSONSerialization.data(withJSONObject: y, options: [])
+        let decoded = String(data: jsonData, encoding: .utf8)!
+        let flightJson = decoded
+        
+//Here we take a codable data and then convert it into json object and then convert the json object into Json. The same function can also be used as an EXTENTION to DECODABLE
