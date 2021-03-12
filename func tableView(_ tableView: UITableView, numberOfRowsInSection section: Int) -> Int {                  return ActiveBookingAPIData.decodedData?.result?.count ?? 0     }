@@ -1,0 +1,21 @@
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   guard let cell =  tableView.dequeueReusableCell(withIdentifier: "cell") as? TableViewCell else {
+            return UITableViewCell()
+        }
+        cell.Btn?.addTarget(self, action:#selector(Action(_:)), for:.touchUpInside)
+        cell.Btn?.tag = indexPath.row   //BUTTON ACTION INSIDE TABLE
+        cell.collectionReloadData()
+        return cell
+        }
+func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+return 0
+}
+       
+   @objc func Action(_ sender: AnyObject) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let cell = Table.cellForRow(at: indexPath) as! TableViewCell
+   
+   }
