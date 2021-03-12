@@ -11,4 +11,6 @@ print(indexes)
 //Finds first index where the item is
 array.firstIndex(where: {$0 == "person1"})
 
-
+//Find lowest number in array
+let list = [5, 4, 3, 5, 2, 50, 8, 10, 300]
+let minValue = list.min()
