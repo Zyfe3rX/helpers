@@ -1,28 +1,21 @@
 /////////////////////////////////////////////////////////////////////////  Find 2nd largest element in array
 func secondLargest()
     {
-        let arr = [1,6456,2135,164,1345,4,8,5,87456,123,2,87,724,6523]
+       let arr = [1,6,3,890,123,6324,61,2]
         var largest = arr[0]
-        var large2nd = 0
-        var smallest = arr[0]
+        var large2 = 0
         for i in(0..<arr.count)
         {
             let newVal = arr[i]
-            if newVal > large2nd && newVal < largest
-            {
-                large2nd = newVal
-            }
             if newVal > largest
             {
+                large2 = largest
                 largest = newVal
             }
-            if newVal < smallest
-            {
-            smallest = newVale
-            }
         }
-        print(largest)
-        print(large2nd)
+        
+        print("largest = \(largest)")
+        print("2nd largest = \(large2)") 
         
         OR
         
