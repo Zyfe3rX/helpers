@@ -257,3 +257,8 @@ public func removeAt(_ index: Int) -> T {
     return remove(node: nodeToRemove)
 }
   }
+
+
+////////////////////////////////////////////////////////////////////// DATABASES
+
+https://www.elitechsystems.com/which-database-you-should-choose-for-ios-application-development/
